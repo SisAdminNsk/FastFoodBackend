@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  order_acception_service:
+    container_name: order_acception_service
+    build: 
+       context: .
+       dockerfile: OrderAcception/Dockerfile
+    ports:
+      - "8081:8083"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  fast_food_mq:
+    image: rabbitmq:management
+    container_name: fast_food_mq
+    ports:
+      - "5672:5672" 
+      - "15672:15672"  
+    volumes:
+      - ./.containers/queue/data/:/var/lib/rabbitmq
+      - ./containers/queue/log/:/var/log/rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
