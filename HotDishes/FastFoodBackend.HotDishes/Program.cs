@@ -1,10 +1,9 @@
-using System.Net.Sockets;
-using System.Net;
+using FastFoodBackend.HotDishes.Consumers;
 using MassTransit;
-using FastFoodBackend.OrderAcception.Consumers;
-using FastFoodBackend.BrokerMessages;
+using System.Net;
+using System.Net.Sockets;
 
-namespace FastFoodBackend.OrderAcception
+namespace FastFoodBackend.HotDishes
 {
     public class Program
     {
@@ -19,9 +18,15 @@ namespace FastFoodBackend.OrderAcception
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            var LocalIp = GetLocalIPAddress();
+
+            builder.WebHost.UseUrls(
+                "http://localhost:8084",
+                "http://" + LocalIp + ":8084");
+
             builder.Services.AddMassTransit(x =>
             {
-                x.AddConsumer<OrderCompletedConsumer>();
+                x.AddConsumer<HotDishConsumer>();
 
                 x.UsingRabbitMq((context, cfg) =>
                 {
@@ -34,35 +39,29 @@ namespace FastFoodBackend.OrderAcception
 
                     cfg.Host(rabbitHost, "/", h =>
                     {
-                        h.Username(rabbitUsername); 
-                        h.Password(rabbitPassword);
+                        h.Username(rabbitPassword);
+                        h.Password(rabbitUsername);
                     });
 
-                    // Подписка на очередь завершенных заказов
-                    cfg.ReceiveEndpoint("completed-orders-queue", e =>
+                    // Подписываемся на очередь hot-dishes-queue
+                    cfg.ReceiveEndpoint("hot-dishes-queue", e =>
                     {
-                        e.ConfigureConsumer<OrderCompletedConsumer>(context);
+                        e.ConfigureConsumer<HotDishConsumer>(context);
                     });
-
-                    cfg.Message<HotDishesInOrder>(x => x.SetEntityName("hot-dishes-queue"));
-                    cfg.Message<ColdDishesInOrder>(x => x.SetEntityName("cold-dishes-queue"));
-                    cfg.Message<DrinksInOrder>(x => x.SetEntityName("drinks-queue"));
-                    cfg.Message<Order>(x => x.SetEntityName("order-assembly-queue"));
                 });
             });
-            
-            string LocalIp = GetLocalIPAddress();
-
-            builder.WebHost.UseUrls(
-                "http://localhost:8083",
-                "http://" + LocalIp + ":8083");
 
             var app = builder.Build();
 
-            app.UseSwagger();
-            app.UseSwaggerUI();
+            // Configure the HTTP request pipeline.
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
 
             app.UseAuthorization();
+
 
             app.MapControllers();
 

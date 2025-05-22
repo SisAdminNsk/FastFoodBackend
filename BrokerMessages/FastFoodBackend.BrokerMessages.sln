@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35219.272
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastFoodBackend.BrokerMessages", "FastFoodBackend.BrokerMessages\FastFoodBackend.BrokerMessages.csproj", "{3376742F-5F0E-4413-868F-68C18323BF4E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3376742F-5F0E-4413-868F-68C18323BF4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3376742F-5F0E-4413-868F-68C18323BF4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3376742F-5F0E-4413-868F-68C18323BF4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3376742F-5F0E-4413-868F-68C18323BF4E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C33327D1-FB5C-4237-B332-38BFECF3CCD9}
+	EndGlobalSection
+EndGlobal
