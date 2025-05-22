@@ -1,8 +1,5 @@
-using System.Net.Sockets;
-using System.Net;
-using MassTransit;
-using FastFoodBackend.OrderAcception.Consumers;
-using FastFoodBackend.BrokerMessages;
+using FastFoodBackend.OrderAcception.Common;
+using FastFoodBackend.OrderAcception.Infrastructure;
 
 namespace FastFoodBackend.OrderAcception
 {
@@ -19,39 +16,9 @@ namespace FastFoodBackend.OrderAcception
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddMassTransit(x =>
-            {
-                x.AddConsumer<OrderCompletedConsumer>();
+            builder.Services.AddInfrastructure(builder.Configuration); // Добавляем инфраструктуру
 
-                x.UsingRabbitMq((context, cfg) =>
-                {
-                    var rabbitConnection = builder.Configuration.GetRequiredSection("RabbitConnection");
-
-                    var rabbitHost = rabbitConnection["host"];
-
-                    var rabbitPassword = rabbitConnection["password"];
-                    var rabbitUsername = rabbitConnection["name"];
-
-                    cfg.Host(rabbitHost, "/", h =>
-                    {
-                        h.Username(rabbitUsername); 
-                        h.Password(rabbitPassword);
-                    });
-
-                    // Подписка на очередь завершенных заказов
-                    cfg.ReceiveEndpoint("completed-orders-queue", e =>
-                    {
-                        e.ConfigureConsumer<OrderCompletedConsumer>(context);
-                    });
-
-                    cfg.Message<HotDishesInOrder>(x => x.SetEntityName("hot-dishes-queue"));
-                    cfg.Message<ColdDishesInOrder>(x => x.SetEntityName("cold-dishes-queue"));
-                    cfg.Message<DrinksInOrder>(x => x.SetEntityName("drinks-queue"));
-                    cfg.Message<Order>(x => x.SetEntityName("order-assembly-queue"));
-                });
-            });
-            
-            string LocalIp = GetLocalIPAddress();
+            string LocalIp = IPAddressUtils.GetLocalIPAddress();
 
             builder.WebHost.UseUrls(
                 "http://localhost:8083",
@@ -67,24 +34,6 @@ namespace FastFoodBackend.OrderAcception
             app.MapControllers();
 
             app.Run();
-        }
-
-        static string GetLocalIPAddress()
-        {
-            using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
-            {
-                socket.Connect("8.8.8.8", 65530);
-                IPEndPoint? endPoint = socket.LocalEndPoint as IPEndPoint;
-
-                if (endPoint != null)
-                {
-                    return endPoint.Address.ToString();
-                }
-                else
-                {
-                    return "127.0.0.1";
-                }
-            }
         }
     }
 }

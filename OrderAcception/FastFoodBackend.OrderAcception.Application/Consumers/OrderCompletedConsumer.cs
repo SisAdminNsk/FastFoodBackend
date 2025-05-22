@@ -1,7 +1,8 @@
-﻿using MassTransit;
-using FastFoodBackend.BrokerMessages;
+﻿using FastFoodBackend.BrokerMessages;
+using MassTransit;
+using Microsoft.Extensions.Logging;
 
-namespace FastFoodBackend.OrderAcception.Consumers
+namespace FastFoodBackend.OrderAcception.Application.Consumers
 {
     public class OrderCompletedConsumer : IConsumer<OrderCompleted>
     {

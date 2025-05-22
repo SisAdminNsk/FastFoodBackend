@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\BrokerMessages\FastFoodBackend.BrokerMessages\FastFoodBackend.BrokerMessages.csproj" />
+    <ProjectReference Include="..\FastFoodBackend.OrderAcception.Infrastructure\FastFoodBackend.OrderAcception.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

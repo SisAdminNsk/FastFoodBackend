@@ -1,7 +1,8 @@
-﻿using FastFoodBackend.BrokerMessages;
-using MassTransit;
+﻿using MassTransit;
+using Microsoft.Extensions.Logging;
+using FastFoodBackend.BrokerMessages;
 
-namespace FastFoodBackend.HotDishes.Consumers
+namespace FastFoodBackend.HotDishes.Application.Consumers
 {
     public class HotDishConsumer : IConsumer<HotDishesInOrder>
     {

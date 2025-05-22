@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFoodBackend.OrderAccept
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFoodBackend.BrokerMessages", "..\BrokerMessages\FastFoodBackend.BrokerMessages\FastFoodBackend.BrokerMessages.csproj", "{93765C70-DAEC-4028-9F7C-051101F6AAE3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastFoodBackend.OrderAcception.Application", "FastFoodBackend.OrderAcception.Application\FastFoodBackend.OrderAcception.Application.csproj", "{E7235A32-0873-4944-AFBD-56BC508C0F36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastFoodBackend.OrderAcception.Infrastructure", "FastFoodBackend.OrderAcception.Infrastructure\FastFoodBackend.OrderAcception.Infrastructure.csproj", "{2E9E2D72-BEE8-4637-9499-778EE0088477}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{93765C70-DAEC-4028-9F7C-051101F6AAE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93765C70-DAEC-4028-9F7C-051101F6AAE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93765C70-DAEC-4028-9F7C-051101F6AAE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7235A32-0873-4944-AFBD-56BC508C0F36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7235A32-0873-4944-AFBD-56BC508C0F36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7235A32-0873-4944-AFBD-56BC508C0F36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7235A32-0873-4944-AFBD-56BC508C0F36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E9E2D72-BEE8-4637-9499-778EE0088477}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E9E2D72-BEE8-4637-9499-778EE0088477}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E9E2D72-BEE8-4637-9499-778EE0088477}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E9E2D72-BEE8-4637-9499-778EE0088477}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
