@@ -21,6 +21,8 @@ namespace FastFoodBackend.OrderAcception.Controllers
         {
             Console.WriteLine($"Заказ создан с id ${order.Id}");
 
+            await _publishEndpoint.Publish(new OrderForAssembly(order));
+
             if (order.HotDishes.Any())
             {
                 await _publishEndpoint.Publish(new HotDishesInOrder(order.Id, order.HotDishes));

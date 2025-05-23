@@ -1,26 +1,6 @@
 version: '3.8'
 
 services:
-  order_acception_service:
-    container_name: order_acception_service
-    build: 
-       context: .
-       dockerfile: OrderAcception/Dockerfile
-    ports:
-      - "8081:8083"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-  
-  hot_dishes_service:
-    container_name: hot_dishes_service
-    build: 
-       context: .
-       dockerfile: HotDishes/Dockerfile
-    ports:
-      - "8082:8084"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-
   fast_food_mq:
     image: rabbitmq:management
     container_name: fast_food_mq
@@ -33,3 +13,47 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+
+  order_acception_service:
+    container_name: order_acception_service
+    build: 
+      context: .
+      dockerfile: OrderAcception/Dockerfile
+    ports:
+      - "8081:8083"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      fast_food_mq:
+        condition: service_healthy
+
+  hot_dishes_service:
+    container_name: hot_dishes_service
+    build: 
+      context: .
+      dockerfile: HotDishes/Dockerfile
+    ports:
+      - "8082:8084"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      fast_food_mq:
+        condition: service_healthy
+
+  orders_assembly_service:
+    container_name: orders_assembly_service
+    build: 
+      context: .
+      dockerfile: OrdersAssembly/Dockerfile 
+    ports:
+      - "8083:8085"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      fast_food_mq:
+        condition: service_healthy

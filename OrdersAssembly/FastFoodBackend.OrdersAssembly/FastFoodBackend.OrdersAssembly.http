@@ -1,0 +1,6 @@
+@FastFoodBackend.OrdersAssembly_HostAddress = http://localhost:5195
+
+GET {{FastFoodBackend.OrdersAssembly_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

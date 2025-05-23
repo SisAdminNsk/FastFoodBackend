@@ -1,7 +1,8 @@
-using FastFoodBackend.HotDishes.Common;
-using FastFoodBackend.HotDishes.Infrastructure;
 
-namespace FastFoodBackend.HotDishes
+using FastFoodBackend.OrdersAssembly.Common;
+using FastFoodBackend.OrdersAssembly.Infrastructure;
+
+namespace FastFoodBackend.OrdersAssembly
 {
     public class Program
     {
@@ -18,11 +19,11 @@ namespace FastFoodBackend.HotDishes
 
             builder.Services.AddInfrastructure(builder.Configuration); // Добавляем инфраструктуру
 
-            var LocalIp = IPAddressUtils.GetLocalIPAddress();
+            string LocalIp = IPAddressUtils.GetLocalIPAddress();
 
             builder.WebHost.UseUrls(
-                "http://localhost:8084",
-                "http://" + LocalIp + ":8084");
+                "http://localhost:8085",
+                "http://" + LocalIp + ":8085");
 
             var app = builder.Build();
 
