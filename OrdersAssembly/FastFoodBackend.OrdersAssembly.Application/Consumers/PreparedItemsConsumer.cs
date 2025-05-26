@@ -20,12 +20,12 @@ namespace FastFoodBackend.OrdersAssembly.Application.Consumers
 
             switch (itemType)
             {
-                case "HOT_DISH":
+                case DishesTypes.HotDish:
                     ProcessPreparedHotDish(orderId, item);
                     break;
-                case "COLD_DISH":
+                case DishesTypes.ColdDish:
                     break;
-                case "DRINK":
+                case DishesTypes.Drink:
                     break;
                 default:
                     Console.WriteLine("Неизвестный тип блюда");
@@ -37,7 +37,13 @@ namespace FastFoodBackend.OrdersAssembly.Application.Consumers
         {
             try
             {
-                var dish = JsonSerializer.Deserialize<HotDish>(hotDish.ToString());
+                var options = new JsonSerializerOptions
+                {
+                    IncludeFields = true,
+                    PropertyNameCaseInsensitive = true
+                };
+
+                var dish = JsonSerializer.Deserialize<HotDish>(hotDish.ToString(), options);
 
                 Console.WriteLine($"${dish.Name} для заказа: ${orderId} добавлено в итоговую позицию");
             }

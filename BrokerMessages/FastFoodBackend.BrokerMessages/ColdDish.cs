@@ -1,7 +1,7 @@
 ﻿namespace FastFoodBackend.BrokerMessages
 {
-    public class ColdDish
+    public class ColdDish : IOrderItem
     {
-        public string Name { get; set; }
+        public string Name { get; set; } = "";
     }
 }

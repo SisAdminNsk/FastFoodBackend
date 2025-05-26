@@ -1,8 +1,8 @@
 ﻿namespace FastFoodBackend.BrokerMessages
 {
-    public class Drink
-    {
-        public string Name { get; set; }
 
+    public class Drink : IOrderItem
+    {
+        public string Name { get; set; } = "";
     }
 }
