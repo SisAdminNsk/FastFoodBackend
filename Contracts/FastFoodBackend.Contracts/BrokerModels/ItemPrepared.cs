@@ -1,6 +1,7 @@
-﻿using System.Text.Json.Serialization;
+﻿using FastFoodBackend.Contracts.ApiModels;
+using System.Text.Json.Serialization;
 
-namespace FastFoodBackend.BrokerMessages
+namespace FastFoodBackend.Contracts.BrokerModels
 {
     public partial class ItemPrepared
     {

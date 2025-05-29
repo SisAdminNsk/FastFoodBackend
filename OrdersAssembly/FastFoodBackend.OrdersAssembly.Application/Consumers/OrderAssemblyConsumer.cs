@@ -1,4 +1,5 @@
-﻿using FastFoodBackend.BrokerMessages;
+﻿using FastFoodBackend.Contracts.BrokerModels;
+
 using MassTransit;
 using Microsoft.Extensions.Logging;
 

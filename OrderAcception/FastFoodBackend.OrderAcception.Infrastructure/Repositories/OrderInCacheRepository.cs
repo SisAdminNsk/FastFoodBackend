@@ -1,16 +1,16 @@
 ﻿using FastFoodBackend.OrderAcception.Application.Abstract.Repositories;
 using StackExchange.Redis;
 
-namespace FastFoodBackend.OrderAcception.Application.Repositories
+namespace FastFoodBackend.OrderAcception.Infrastructure.Repositories
 {
-    public class OrderInCacheRepository : BaseDistributedCacheRepository, IOrderInCacheRepository
+    internal class OrderInCacheRepository : BaseDistributedCacheRepository, IOrderInCacheRepository
     {
-        public OrderInCacheRepository(IConnectionMultiplexer connectionMultiplexer) : base(connectionMultiplexer) 
+        public OrderInCacheRepository(IConnectionMultiplexer connectionMultiplexer) : base(connectionMultiplexer)
         {
-            
+
         }
 
-        public async Task SaveOrderAsync(BrokerMessages.Order order)
+        public async Task SaveOrderAsync(Contracts.ApiAndBrokersModels.Order order)
         {
             var key = $"order:{order.Id}";
 
@@ -22,7 +22,7 @@ namespace FastFoodBackend.OrderAcception.Application.Repositories
 
             var allItemsInOrder = order.GetAllItems();
 
-            foreach(var item in allItemsInOrder)
+            foreach (var item in allItemsInOrder)
             {
                 entriesList.Add(new HashEntry(item.Name, false));
             }

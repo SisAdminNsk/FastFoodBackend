@@ -1,8 +1,8 @@
 ﻿using StackExchange.Redis;
 
-namespace FastFoodBackend.OrderAcception.Application.Abstract.Repositories
+namespace FastFoodBackend.OrderAcception.Infrastructure.Repositories
 {
-    public abstract class BaseDistributedCacheRepository
+    internal abstract class BaseDistributedCacheRepository
     {
         protected readonly IDatabase _database;
 

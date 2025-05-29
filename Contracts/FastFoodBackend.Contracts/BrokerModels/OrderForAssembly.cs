@@ -1,4 +1,6 @@
-﻿namespace FastFoodBackend.BrokerMessages
+﻿using FastFoodBackend.Contracts.ApiAndBrokersModels;
+
+namespace FastFoodBackend.Contracts.BrokerModels
 {
     public class OrderForAssembly
     {

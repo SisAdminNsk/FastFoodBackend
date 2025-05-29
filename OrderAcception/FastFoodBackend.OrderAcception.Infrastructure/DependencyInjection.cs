@@ -1,7 +1,11 @@
-﻿using FastFoodBackend.BrokerMessages;
+﻿using FastFoodBackend.Contracts.BrokerModels;
+
 using FastFoodBackend.OrderAcception.Application.Abstract.Repositories;
+using FastFoodBackend.OrderAcception.Application.Abstract.Services;
 using FastFoodBackend.OrderAcception.Application.Consumers;
-using FastFoodBackend.OrderAcception.Application.Repositories;
+using FastFoodBackend.OrderAcception.Application.Services;
+using FastFoodBackend.OrderAcception.Infrastructure.Repositories;
+
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,14 +15,15 @@ namespace FastFoodBackend.OrderAcception.Infrastructure
 {
     public static class DependencyInjection
     {
-        public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration) 
+        public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             AddRabbitMQ(services, configuration);
-            AddRedisCahce(services, configuration);
+            AddRedisCache(services, configuration);
 
             AddRepositories(services);
+            AddServices(services);
         }
-        public static void AddRabbitMQ(this IServiceCollection services, IConfiguration configuration)
+        private static void AddRabbitMQ(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddMassTransit(x =>
             {
@@ -53,7 +58,7 @@ namespace FastFoodBackend.OrderAcception.Infrastructure
             });
         }
 
-        public static void AddRedisCahce(this IServiceCollection services, IConfiguration configuration) 
+        private static void AddRedisCache(this IServiceCollection services, IConfiguration configuration) 
         {
             var redisConnection = configuration.GetRequiredSection("RedisConnection");
             var host = redisConnection["host"];
@@ -61,9 +66,14 @@ namespace FastFoodBackend.OrderAcception.Infrastructure
             services.AddSingleton<IConnectionMultiplexer>(options => ConnectionMultiplexer.Connect(host));
         }
 
-        public static void AddRepositories(this IServiceCollection services) 
+        private static void AddRepositories(this IServiceCollection services) 
         {
             services.AddScoped<IOrderInCacheRepository, OrderInCacheRepository>();
         }
+
+        private static void AddServices(this IServiceCollection services)
+        {
+            services.AddTransient<IOrderService, OrderService>();
+        }   
     }
 }

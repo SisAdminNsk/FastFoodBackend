@@ -1,4 +1,4 @@
-﻿using FastFoodBackend.BrokerMessages;
+﻿using FastFoodBackend.Contracts.ApiAndBrokersModels;
 
 namespace FastFoodBackend.OrderAcception.Application.Abstract.Repositories
 {

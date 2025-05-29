@@ -5,11 +5,11 @@ VisualStudioVersion = 17.11.35219.272
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFoodBackend.OrdersAssembly", "FastFoodBackend.OrdersAssembly\FastFoodBackend.OrdersAssembly.csproj", "{B35152ED-F674-4458-A178-AE1AE5757CB3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFoodBackend.BrokerMessages", "..\BrokerMessages\FastFoodBackend.BrokerMessages\FastFoodBackend.BrokerMessages.csproj", "{6B3E41AC-5468-4C53-975E-7399CBFCD530}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFoodBackend.OrdersAssembly.Application", "FastFoodBackend.OrdersAssembly.Application\FastFoodBackend.OrdersAssembly.Application.csproj", "{330F3FD6-B875-4EE4-BFD9-A1F31EDF501D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastFoodBackend.OrdersAssembly.Application", "FastFoodBackend.OrdersAssembly.Application\FastFoodBackend.OrdersAssembly.Application.csproj", "{330F3FD6-B875-4EE4-BFD9-A1F31EDF501D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFoodBackend.OrdersAssembly.Infrastructure", "FastFoodBackend.OrdersAssembly.Infrastructure\FastFoodBackend.OrdersAssembly.Infrastructure.csproj", "{F39F7323-E56D-458C-964E-B32AB5488BE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastFoodBackend.OrdersAssembly.Infrastructure", "FastFoodBackend.OrdersAssembly.Infrastructure\FastFoodBackend.OrdersAssembly.Infrastructure.csproj", "{F39F7323-E56D-458C-964E-B32AB5488BE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFoodBackend.Contracts", "..\Contracts\FastFoodBackend.Contracts\FastFoodBackend.Contracts.csproj", "{25778A89-347A-44F2-856A-EBF640DE7814}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		{B35152ED-F674-4458-A178-AE1AE5757CB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B35152ED-F674-4458-A178-AE1AE5757CB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B35152ED-F674-4458-A178-AE1AE5757CB3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6B3E41AC-5468-4C53-975E-7399CBFCD530}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6B3E41AC-5468-4C53-975E-7399CBFCD530}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6B3E41AC-5468-4C53-975E-7399CBFCD530}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6B3E41AC-5468-4C53-975E-7399CBFCD530}.Release|Any CPU.Build.0 = Release|Any CPU
 		{330F3FD6-B875-4EE4-BFD9-A1F31EDF501D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{330F3FD6-B875-4EE4-BFD9-A1F31EDF501D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{330F3FD6-B875-4EE4-BFD9-A1F31EDF501D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{F39F7323-E56D-458C-964E-B32AB5488BE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F39F7323-E56D-458C-964E-B32AB5488BE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F39F7323-E56D-458C-964E-B32AB5488BE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25778A89-347A-44F2-856A-EBF640DE7814}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25778A89-347A-44F2-856A-EBF640DE7814}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25778A89-347A-44F2-856A-EBF640DE7814}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25778A89-347A-44F2-856A-EBF640DE7814}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

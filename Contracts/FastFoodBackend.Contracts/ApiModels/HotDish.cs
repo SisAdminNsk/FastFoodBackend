@@ -1,4 +1,4 @@
-﻿namespace FastFoodBackend.BrokerMessages
+﻿namespace FastFoodBackend.Contracts.ApiModels
 {
     public class HotDish : IOrderItem
     {
@@ -9,6 +9,6 @@
             Name = name;
         }
 
-        public HotDish() { } 
+        public HotDish() { }
     }
 }

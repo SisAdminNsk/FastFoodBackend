@@ -1,11 +1,21 @@
-﻿using FastFoodBackend.BrokerMessages;
+﻿using FastFoodBackend.Contracts.BrokerModels;
+using FastFoodBackend.Contracts.ApiModels;
+
 using MassTransit;
 using System.Text.Json;
+using FastFoodBackend.OrdersAssembly.Application.Abstract.Repositories;
 
 namespace FastFoodBackend.OrdersAssembly.Application.Consumers
 {
     public class PreparedItemsConsumer : IConsumer<ItemPrepared>
     {
+        private readonly IOrderInCacheRepository _orderInCacheRepository;
+
+        public PreparedItemsConsumer(IOrderInCacheRepository orderInCacheRepository)
+        {
+            _orderInCacheRepository = orderInCacheRepository;
+        }
+
         public async Task Consume(ConsumeContext<ItemPrepared> context)
         {
             var message = context.Message;
@@ -21,11 +31,13 @@ namespace FastFoodBackend.OrdersAssembly.Application.Consumers
             switch (itemType)
             {
                 case DishesTypes.HotDish:
-                    ProcessPreparedHotDish(orderId, item);
+                    ProcessPreparedDish<HotDish>(orderId, item);
                     break;
                 case DishesTypes.ColdDish:
+                    ProcessPreparedDish<ColdDish>(orderId, item);
                     break;
                 case DishesTypes.Drink:
+                    ProcessPreparedDish<Drink>(orderId, item);
                     break;
                 default:
                     Console.WriteLine("Неизвестный тип блюда");
@@ -33,7 +45,7 @@ namespace FastFoodBackend.OrdersAssembly.Application.Consumers
             }
         }
 
-        private void ProcessPreparedHotDish(Guid orderId, object hotDish)
+        private void ProcessPreparedDish<Dish>(Guid orderId, object hotDish) where Dish : IOrderItem
         {
             try
             {
@@ -43,9 +55,14 @@ namespace FastFoodBackend.OrdersAssembly.Application.Consumers
                     PropertyNameCaseInsensitive = true
                 };
 
-                var dish = JsonSerializer.Deserialize<HotDish>(hotDish.ToString(), options);
+                var dish = JsonSerializer.Deserialize<Dish>(hotDish.ToString(), options);
 
-                Console.WriteLine($"${dish.Name} для заказа: ${orderId} добавлено в итоговую позицию");
+                Console.WriteLine($"{dish.Name} для заказа: ${orderId} добавлено в итоговую позицию");
+
+                var fields = new HashSet<string>() {dish.Name};
+
+                //var order1 = _orderInCacheRepository.GetOrderInCacheRecordAsync(orderId).Result;
+                //var order2 = _orderInCacheRepository.GetOrderInCacheRecordAsync(orderId, fields).Result;
             }
             catch(Exception ex)
             {

@@ -5,11 +5,11 @@ VisualStudioVersion = 17.11.35219.272
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFoodBackend.HotDishes", "FastFoodBackend.HotDishes\FastFoodBackend.HotDishes.csproj", "{D2CACFD5-A66D-4BB6-A4B7-B2ABFB21D123}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFoodBackend.BrokerMessages", "..\BrokerMessages\FastFoodBackend.BrokerMessages\FastFoodBackend.BrokerMessages.csproj", "{AA720EC7-022E-4505-A60F-D444B59872DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFoodBackend.HotDishes.Application", "FastFoodBackend.HotDishes.Application\FastFoodBackend.HotDishes.Application.csproj", "{5F97462F-AD25-47D2-9687-05CFDFE4DDED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastFoodBackend.HotDishes.Application", "FastFoodBackend.HotDishes.Application\FastFoodBackend.HotDishes.Application.csproj", "{5F97462F-AD25-47D2-9687-05CFDFE4DDED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFoodBackend.HotDishes.Infrastructure", "FastFoodBackend.HotDishes.Infrastructure\FastFoodBackend.HotDishes.Infrastructure.csproj", "{CA4DCE67-4533-4A87-B241-F32204DD53AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastFoodBackend.HotDishes.Infrastructure", "FastFoodBackend.HotDishes.Infrastructure\FastFoodBackend.HotDishes.Infrastructure.csproj", "{CA4DCE67-4533-4A87-B241-F32204DD53AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFoodBackend.Contracts", "..\Contracts\FastFoodBackend.Contracts\FastFoodBackend.Contracts.csproj", "{F9673BBA-32CC-478C-BACA-49F711E17C22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		{D2CACFD5-A66D-4BB6-A4B7-B2ABFB21D123}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2CACFD5-A66D-4BB6-A4B7-B2ABFB21D123}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2CACFD5-A66D-4BB6-A4B7-B2ABFB21D123}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AA720EC7-022E-4505-A60F-D444B59872DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AA720EC7-022E-4505-A60F-D444B59872DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AA720EC7-022E-4505-A60F-D444B59872DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AA720EC7-022E-4505-A60F-D444B59872DC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5F97462F-AD25-47D2-9687-05CFDFE4DDED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5F97462F-AD25-47D2-9687-05CFDFE4DDED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F97462F-AD25-47D2-9687-05CFDFE4DDED}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{CA4DCE67-4533-4A87-B241-F32204DD53AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA4DCE67-4533-4A87-B241-F32204DD53AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA4DCE67-4533-4A87-B241-F32204DD53AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9673BBA-32CC-478C-BACA-49F711E17C22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9673BBA-32CC-478C-BACA-49F711E17C22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9673BBA-32CC-478C-BACA-49F711E17C22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9673BBA-32CC-478C-BACA-49F711E17C22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

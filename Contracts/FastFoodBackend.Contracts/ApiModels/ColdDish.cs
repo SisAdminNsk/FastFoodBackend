@@ -1,4 +1,4 @@
-﻿namespace FastFoodBackend.BrokerMessages
+﻿namespace FastFoodBackend.Contracts.ApiModels
 {
     public class ColdDish : IOrderItem
     {

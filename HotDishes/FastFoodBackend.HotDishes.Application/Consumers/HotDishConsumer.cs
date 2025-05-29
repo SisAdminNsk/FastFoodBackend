@@ -1,6 +1,6 @@
 ﻿using MassTransit;
 using Microsoft.Extensions.Logging;
-using FastFoodBackend.BrokerMessages;
+using FastFoodBackend.Contracts.BrokerModels;
 
 namespace FastFoodBackend.HotDishes.Application.Consumers
 {

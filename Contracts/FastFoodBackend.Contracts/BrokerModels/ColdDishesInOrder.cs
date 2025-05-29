@@ -1,4 +1,6 @@
-﻿namespace FastFoodBackend.BrokerMessages
+﻿using FastFoodBackend.Contracts.ApiModels;
+
+namespace FastFoodBackend.Contracts.BrokerModels
 {
     public class ColdDishesInOrder
     {

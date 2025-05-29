@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\BrokerMessages\FastFoodBackend.BrokerMessages\FastFoodBackend.BrokerMessages.csproj" />
+    <ProjectReference Include="..\..\Contracts\FastFoodBackend.Contracts\FastFoodBackend.Contracts.csproj" />
   </ItemGroup>
 
 </Project>
