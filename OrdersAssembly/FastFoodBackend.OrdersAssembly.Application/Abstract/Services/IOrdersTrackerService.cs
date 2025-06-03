@@ -2,10 +2,10 @@
 
 namespace FastFoodBackend.OrdersAssembly.Application.Abstract.Services
 {
-    public interface IOrdersTrackerService
+    public interface IOrdersTrackerService : IDisposable
     {
         Task OnPreparedItemReceived(ItemPrepared preparedItem);
 
-        event EventHandler<OrderCompleted> OrderIsReady; 
+        event Func<object, OrderCompleted, Task>? OrderIsReadyAsync;
     }
 }

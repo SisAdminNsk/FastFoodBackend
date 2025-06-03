@@ -53,7 +53,6 @@ namespace FastFoodBackend.OrderAcception.Infrastructure
                     cfg.Message<HotDishesInOrder>(x => x.SetEntityName("hot-dishes-queue"));
                     cfg.Message<ColdDishesInOrder>(x => x.SetEntityName("cold-dishes-queue"));
                     cfg.Message<DrinksInOrder>(x => x.SetEntityName("drinks-queue"));
-                    cfg.Message<OrderForAssembly>(x => x.SetEntityName("order-assembly-queue"));
                 });
             });
         }

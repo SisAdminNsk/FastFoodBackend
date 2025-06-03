@@ -11,7 +11,7 @@ namespace FastFoodBackend.OrdersAssembly.Infrastructure.Repositories
             
         }
 
-        public async Task<OrderInCache> GetOrderInCacheRecordAsync(Guid orderId)
+        public async Task<OrderInCache> GetOrderAsync(Guid orderId)
         {
             var hashEntries = await _database.HashGetAllAsync(BuildKey(orderId));
 
@@ -43,10 +43,10 @@ namespace FastFoodBackend.OrdersAssembly.Infrastructure.Repositories
                 }
             }
 
-            return new OrderInCache(totalItems, totalCookedItems, itemInOrderStatuses);
+            return new OrderInCache(orderId, totalItems, totalCookedItems, itemInOrderStatuses);
         }
 
-        public async Task<OrderInCache> GetOrderInCacheRecordAsync(Guid orderId, HashSet<string> itemsNames)
+        public async Task<OrderInCache> GetOrderAsync(Guid orderId, HashSet<string> itemsNames)
         {
             var fields = new List<RedisValue>() {"total_items", "total_cooked_items" };
 
@@ -69,8 +69,37 @@ namespace FastFoodBackend.OrdersAssembly.Infrastructure.Repositories
                 itemInOrderStatuses.Add(itemName, isReady);
             }
 
-            return new OrderInCache(totalItems, totalCookedItems, itemInOrderStatuses);
+            return new OrderInCache(orderId, totalItems, totalCookedItems, itemInOrderStatuses);
         }
+
+        public async Task SetOrderItemClosedAsync(OrderInCache order, string item)
+        {
+            var fieldsToUpdate = new List<HashEntry>()
+            {
+                new HashEntry("total_cooked_items", order.TotalCookedItems + 1),
+                new HashEntry(item, 1)
+            };
+
+            await _database.HashSetAsync(BuildKey(order.OrderId), fieldsToUpdate.ToArray());
+        }
+
+        public async Task SetOrderItemClosedAsync(OrderInCache order, HashSet<string> items)
+        {
+            var closedItemsCount = items.Count;
+
+            var fieldsToUpdate = new List<HashEntry>()
+            {
+                new HashEntry("total_cooked_items", order.TotalCookedItems + closedItemsCount)
+            };
+
+            foreach(var item in items)
+            {
+                fieldsToUpdate.Add(new HashEntry(item, 1));
+            }
+
+            await _database.HashSetAsync(BuildKey(order.OrderId), fieldsToUpdate.ToArray());
+        }
+
         private string BuildKey(Guid orderId)
         {
             return $"order:{orderId}";

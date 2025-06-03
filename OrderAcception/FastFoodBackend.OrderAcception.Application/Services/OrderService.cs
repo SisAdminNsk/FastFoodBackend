@@ -32,8 +32,6 @@ namespace FastFoodBackend.OrderAcception.Application.Services
 
             await _orderInCacheRepository.SaveOrderAsync(order); // сохраняем в Redis 
 
-            await _messageBroker.Publish(new OrderForAssembly(order)); // Отправляем в очередь сборки заказов
-
             if (order.HotDishes.Any()) // отправляем в очередь приготовления горячих блюд
             {
                 await _messageBroker.Publish(new HotDishesInOrder(order.Id, order.HotDishes));

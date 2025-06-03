@@ -16,7 +16,9 @@ namespace FastFoodBackend.OrderAcception.Application.Consumers
 
         public async Task Consume(ConsumeContext<OrderCompleted> context)
         {
-            _logger.LogInformation($"Order {context.Message.Id} completed and ready for pickup");
+            _logger.LogInformation($"Заказ {context.Message} готов к выдаче");
+
+
         }
     }
 }

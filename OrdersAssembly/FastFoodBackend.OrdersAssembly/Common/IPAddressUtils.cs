@@ -10,6 +10,7 @@ namespace FastFoodBackend.OrdersAssembly.Common
             using (var socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
             {
                 socket.Connect("8.8.8.8", 65530);
+
                 IPEndPoint? endPoint = socket.LocalEndPoint as IPEndPoint;
 
                 if (endPoint != null)

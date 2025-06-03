@@ -1,6 +1,7 @@
 ﻿using MassTransit;
 using Microsoft.Extensions.Logging;
 using FastFoodBackend.Contracts.BrokerModels;
+using FastFoodBackend.Contracts.ApiModels;
 
 namespace FastFoodBackend.HotDishes.Application.Consumers
 {
@@ -21,15 +22,21 @@ namespace FastFoodBackend.HotDishes.Application.Consumers
 
             foreach (var dish in dishes)
             {
-                _logger.LogInformation($"Приготовление горячего блюда {dish.Name} для заказа {orderId}");
-
-                // Симуляция приготовления
-                await Task.Delay(TimeSpan.FromSeconds(2));
-
-                _logger.LogInformation($"Горячее блюдо {dish.Name} готово (заказ {orderId})");
-
-                await _publishEndpoint.Publish(ItemPrepared.BuildHotDishPrepared(orderId, dish));
+                await SimulateCooking(orderId, dish);
             }
+        }
+
+        private async Task SimulateCooking(Guid orderId, HotDish dish)
+        {
+            _logger.LogInformation($"Приготовление горячего блюда {dish.Name} для заказа {orderId}");
+
+            // Симуляция приготовления
+
+            await Task.Delay(TimeSpan.FromSeconds(2));
+
+            _logger.LogInformation($"Горячее блюдо {dish.Name} готово (заказ {orderId})");
+
+            await _publishEndpoint.Publish(ItemPrepared.BuildHotDishPrepared(orderId, dish));
         }
     }
 }

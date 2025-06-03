@@ -1,5 +1,4 @@
-﻿using FastFoodBackend.Contracts.BrokerModels;
-using FastFoodBackend.OrdersAssembly.Application.Abstract.Repositories;
+﻿using FastFoodBackend.OrdersAssembly.Application.Abstract.Repositories;
 using FastFoodBackend.OrdersAssembly.Application.Abstract.Services;
 using FastFoodBackend.OrdersAssembly.Application.Consumers;
 using FastFoodBackend.OrdersAssembly.Application.Services;
@@ -25,7 +24,6 @@ namespace FastFoodBackend.OrdersAssembly.Infrastructure
         {
             services.AddMassTransit(x =>
             {
-                x.AddConsumer<OrderAssemblyConsumer>();
                 x.AddConsumer<PreparedItemsConsumer>(); 
 
                 x.UsingRabbitMq((context, cfg) =>
@@ -43,19 +41,11 @@ namespace FastFoodBackend.OrdersAssembly.Infrastructure
                         h.Password(rabbitPassword);
                     });
 
-                    // Подписка на очередь только что поступивших заказов
-                    cfg.ReceiveEndpoint("order-assembly-queue", e =>
-                    {
-                        e.ConfigureConsumer<OrderAssemblyConsumer>(context);
-                    });
-
                     // Общая очередь для всех приготовленных позиций
                     cfg.ReceiveEndpoint("prepared-items-queue", e =>
                     {
                         e.ConfigureConsumer<PreparedItemsConsumer>(context);
                     });
-
-                    cfg.Message<OrderCompleted>(x => x.SetEntityName("order-completed-queue"));
                 });
             });
         }

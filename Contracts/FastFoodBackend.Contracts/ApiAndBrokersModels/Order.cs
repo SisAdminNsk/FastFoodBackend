@@ -49,19 +49,19 @@ namespace FastFoodBackend.Contracts.ApiAndBrokersModels
             sb.AppendLine("\nDrinks:");
             foreach (var drink in Drinks)
             {
-                sb.AppendLine($"- {drink}");
+                sb.AppendLine($"- {drink.Name}");
             }
 
             sb.AppendLine("\nHot Dishes:");
             foreach (var hotDish in HotDishes)
             {
-                sb.AppendLine($"- {hotDish}");
+                sb.AppendLine($"- {hotDish.Name}");
             }
 
             sb.AppendLine("\nCold Dishes:");
             foreach (var coldDish in ColdDishes)
             {
-                sb.AppendLine($"- {coldDish}");
+                sb.AppendLine($"- {coldDish.Name}");
             }
 
             return sb.ToString();
