@@ -36,7 +36,7 @@ namespace FastFoodBackend.HotDishes.Application.Consumers
 
             _logger.LogInformation($"Горячее блюдо {dish.Name} готово (заказ {orderId})");
 
-            await _publishEndpoint.Publish(ItemPrepared.BuildHotDishPrepared(orderId, dish));
+            await _publishEndpoint.Publish(ItemPrepared.BuildDish(orderId, dish));
         }
     }
 }

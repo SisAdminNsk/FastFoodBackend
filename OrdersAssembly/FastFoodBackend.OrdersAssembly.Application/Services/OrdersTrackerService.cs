@@ -1,12 +1,10 @@
-﻿using FastFoodBackend.Contracts.ApiModels;
-using FastFoodBackend.Contracts.BrokerModels;
+﻿using FastFoodBackend.Contracts.BrokerModels;
 using FastFoodBackend.Contracts.CacheModels;
 
 using FastFoodBackend.OrdersAssembly.Application.Abstract.Repositories;
 using FastFoodBackend.OrdersAssembly.Application.Abstract.Services;
 
 using Microsoft.Extensions.Logging;
-using System.Text.Json;
 
 namespace FastFoodBackend.OrdersAssembly.Application.Services
 {
@@ -16,12 +14,15 @@ namespace FastFoodBackend.OrdersAssembly.Application.Services
 
         private readonly ILogger<OrdersTrackerService> _logger;
         private readonly IOrderInCacheRepository _orderInCacheRepository;
+        private readonly IDishConverterService _dishConverterService;
 
         public OrdersTrackerService(
             IOrderInCacheRepository orderInCacheRepository,
+            IDishConverterService dishConverterService,
             ILogger<OrdersTrackerService> logger)
         {
             _orderInCacheRepository = orderInCacheRepository;
+            _dishConverterService = dishConverterService;
             _logger = logger;
         }
 
@@ -41,7 +42,7 @@ namespace FastFoodBackend.OrdersAssembly.Application.Services
             }
             else
             {
-                var orderItem = GetOrderItem(preparedItem.Type, preparedItem.Item);
+                var orderItem = _dishConverterService.ConvertDish(preparedItem.DishType, preparedItem.Item);
 
                 await _orderInCacheRepository.SetOrderItemClosedAsync(order, orderItem.Name);
 
@@ -70,42 +71,6 @@ namespace FastFoodBackend.OrdersAssembly.Application.Services
             }
 
             return false;
-        }
-
-        private IOrderItem GetOrderItem(string itemType, object serializedDish)
-        {
-            switch (itemType)
-            {
-                case DishesTypes.HotDish:
-                    return ConvertDish<HotDish>(serializedDish);
-                case DishesTypes.ColdDish:
-                    return ConvertDish<ColdDish>(serializedDish);
-                case DishesTypes.Drink:
-                    return ConvertDish<Drink>(serializedDish);
-                default:
-                    throw new NotSupportedException($"Неизвестный тип блюда: {itemType}");
-            }
-        }
-        private Dish? ConvertDish<Dish>(object serializedDish) where Dish : IOrderItem
-        {
-            try
-            {
-                var options = new JsonSerializerOptions
-                {
-                    IncludeFields = true,
-                    PropertyNameCaseInsensitive = true
-                };
-
-                var dish = JsonSerializer.Deserialize<Dish>(serializedDish.ToString(), options);
-
-                return dish;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Невозможно корректно преобразовать тип объекта: {ex.Message}");
-
-                throw;
-            }
         }
 
         public void Dispose()

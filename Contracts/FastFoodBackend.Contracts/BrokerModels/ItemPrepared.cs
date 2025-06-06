@@ -1,4 +1,5 @@
 ﻿using FastFoodBackend.Contracts.ApiModels;
+using FastFoodBackend.Contracts.ReflectionUtils;
 using System.Text.Json.Serialization;
 
 namespace FastFoodBackend.Contracts.BrokerModels
@@ -6,29 +7,22 @@ namespace FastFoodBackend.Contracts.BrokerModels
     public partial class ItemPrepared
     {
         public Guid OrderId { get; private set; }
-        public string Type { get; private set; }
+        public DishType DishType { get; private set; }
         public object Item { get; private set; }
 
         [JsonConstructor]
-        private ItemPrepared(Guid orderId, string type, object item)
+        private ItemPrepared(Guid orderId, DishType dishType, object item)
         {
             OrderId = orderId;
-            Type = type;
+            DishType = dishType;
             Item = item;
         }
-        public static ItemPrepared BuildHotDishPrepared(Guid orderId, object item)
-        {
-            return new ItemPrepared(orderId, DishesTypes.HotDish, item);
-        }
 
-        public static ItemPrepared BuildColdDishPrepared(Guid orderId, object item)
+        public static ItemPrepared BuildDish<Dish>(Guid orderId, Dish dish) where Dish : IOrderItem
         {
-            return new ItemPrepared(orderId, DishesTypes.ColdDish, item);
-        }
+            var dishType = DishTypeToDishClassMapper.GetDishTypeByDishClass(typeof(Dish));
 
-        public static ItemPrepared BuildDrinkPrepared(Guid orderId, object item)
-        {
-            return new ItemPrepared(orderId, DishesTypes.Drink, item);
+            return new ItemPrepared(orderId, dishType, dish);
         }
     }
 }
