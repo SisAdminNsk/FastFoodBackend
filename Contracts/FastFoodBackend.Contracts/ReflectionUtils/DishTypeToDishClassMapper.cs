@@ -69,7 +69,7 @@ namespace FastFoodBackend.Contracts.ReflectionUtils
         }
 
         // поменял Master
-        
+
         // Тестовый коммит в master #1
 
         // Тестовый коммит в master #2
@@ -77,7 +77,9 @@ namespace FastFoodBackend.Contracts.ReflectionUtils
         // Тестовый коммит в master #3 с конфликтом
 
         // Поменял чтобы был конфликт
-        
+
         // Мастер отдалился на 1 коммит
+
+        // Мастер отдалился на 2 коммит
     }
 }
