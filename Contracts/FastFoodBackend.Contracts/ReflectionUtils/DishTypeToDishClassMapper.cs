@@ -70,6 +70,4 @@ namespace FastFoodBackend.Contracts.ReflectionUtils
 
         // поменял Master
     }
-
-    // исправил изменения
 }
