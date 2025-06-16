@@ -69,5 +69,7 @@ namespace FastFoodBackend.Contracts.ReflectionUtils
         }
 
         // поменял Master
+
+        // Fast forward Merge
     }
 }
