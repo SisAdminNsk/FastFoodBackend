@@ -68,4 +68,6 @@ namespace FastFoodBackend.Contracts.ReflectionUtils
             Map[dishType] = typeof(Dish);
         }
     }
+
+    // тестовое изменение 
 }
