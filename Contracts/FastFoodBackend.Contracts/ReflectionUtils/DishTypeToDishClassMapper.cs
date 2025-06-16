@@ -67,6 +67,8 @@ namespace FastFoodBackend.Contracts.ReflectionUtils
 
             Map[dishType] = typeof(Dish);
         }
+
+        // поменял Master
     }
 
     // исправил изменения
