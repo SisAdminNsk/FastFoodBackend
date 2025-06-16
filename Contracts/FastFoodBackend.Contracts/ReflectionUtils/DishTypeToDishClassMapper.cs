@@ -78,6 +78,7 @@ namespace FastFoodBackend.Contracts.ReflectionUtils
 
         // Поменял чтобы был конфликт
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         // На 1 коммит выше Master 
 
@@ -86,5 +87,11 @@ namespace FastFoodBackend.Contracts.ReflectionUtils
         
         // Мастер отдалился на 1 коммит
 >>>>>>> 8f56e30 (Мастер отдалился на 1 коммит)
+=======
+
+        // Мастер отдалился на 1 коммит
+
+        // Мастер отдалился на 2 коммит
+>>>>>>> 45cc655 (Мастер отдалился на 2 коммит)
     }
 }
