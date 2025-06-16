@@ -78,8 +78,15 @@ namespace FastFoodBackend.Contracts.ReflectionUtils
 
         // Поменял чтобы был конфликт
 
+        // На 2 коммит выше Master 
+        
         // Мастер отдалился на 1 коммит
 
         // Мастер отдалился на 2 коммит
+
+        // На 1 коммит выше Master 
+
+        // На 2 коммит выше Master 
+      
     }
 }
