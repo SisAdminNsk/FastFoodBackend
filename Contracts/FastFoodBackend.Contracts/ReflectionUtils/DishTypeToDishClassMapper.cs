@@ -98,7 +98,7 @@ namespace FastFoodBackend.Contracts.ReflectionUtils
 =======
 =======
         // На 1 коммит выше Master 
->>>>>>> 3d08321 (На 1 коммит выше Master)
->>>>>>> 128c514 (На 1 коммит выше Master)
+
+        // На 2 коммит выше Master 
     }
 }
