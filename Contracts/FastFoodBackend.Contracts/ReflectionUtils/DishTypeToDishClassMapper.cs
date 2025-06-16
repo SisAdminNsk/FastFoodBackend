@@ -69,5 +69,5 @@ namespace FastFoodBackend.Contracts.ReflectionUtils
         }
     }
 
-    // тестовое изменение 
+    // исправил изменения
 }
